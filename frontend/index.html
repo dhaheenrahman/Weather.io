@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Weather.io</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="first-column">
+            <h1>Weather Dashboard</h1>
+            <div class="controls">
+                <label for="cityChoice">City:</label>
+                <select id="cityChoice" class="dropdown">
+                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Delhi">Delhi</option>
+                </select>
+
+                <label for="unit">Unit:</label>
+                <select id="unit" class="dropdown">
+                    <option value="c">°C</option>
+                    <option value="f">°F</option>
+                </select>
+
+                <label for="refreshInterval">Refresh Interval:</label>
+                <select id="refreshInterval" class="dropdown">
+                    <option value="600000">10 mins</option>
+                    <option value="1800000">30 mins</option>
+                    <option value="3600000">1 hour</option>
+                </select>
+            </div>
+
+            <div class="weather-display">
+                <div class="weather-item">
+                    <div class ="weather-condition">
+                        <img id="weatherIcon" alt="Weather_Icon">
+                        <span id="status"></span>
+                    </div>
+                    <span id="city"></span>
+                    <span id="temp"></span>
+                    <span id="feelsLike"></span>
+                </div>
+                <div class="weather-time-item">
+                    <span id="refreshtime"></span>
+                    <span id="updatetime"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="second-column">
+            <div class="chart-container">
+                <h3>Daily Summary</h3>
+                <canvas id="temperatureChart" width="400" height="230"></canvas>
+            </div>
+
+            <div class="alert-section">
+                <h3>Set Weather Alert</h3>
+                <form id="alertForm" class="alert-form">
+                    <div class="form-group">
+                        <label for="tempThreshold">Temperature Threshold:</label>
+                        <input type="number" placeholder="Trigger when reaches/goes above" step="0.1" id="tempThreshold" name="tempThreshold" class="input-field">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="conditionThreshold">Weather Condition:</label>
+                        <select id="conditionThreshold" class="dropdown" onmousedown="if(this.options.length>3){this.size=3;}"  onchange='this.size=0;'>
+                            <option  default value="null">Select Condition</option>
+                            <option value="Thunderstorm">Thunderstorm</option>
+                            <option value="Clouds">Clouds</option>
+                            <option value="Rain">Rain</option>
+                            <option value="Snow">Snow</option>
+                            <option value="Drizzle">Drizzle</option>
+                            <option value="Mist">Mist</option>
+                            <option value="Haze">Haze</option>
+                            <option value="Smoke">Smoke</option>
+                            <option value="Fog">Fog</option>
+                            <option value="Clear">Clear</option>
+                            <option value="Sand">Sand</option>
+                            <option value="Dust">Dust</option>
+                            <option value="Ash">Ash</option>
+                            <option value="Squall">Squall</option>
+                            <option value="Tornado">Tornado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="consecutiveChecks">Consecutive Checks:</label>
+                        <input type="number" id="consecutiveChecks" required placeholder="No.of consecutive updates to be considered " min='1' max="10" class="input-field" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alertType">Alert Type:</label>
+                        <select id="alertType" name="alertType" class="dropdown">
+                            <option value="temperature">Temperature</option>
+                            <option value="condition">Weather Condition</option>
+                        </select>
+                    </div>
+                    <div class="submit">
+                        <button type="submit" class="submit-btn">Set Alert</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="third-column">
+            <div class="active-alerts">
+                <h5>Active alerts</h5>
+                <ul id="active-list">
+                    
+                </ul>
+            </div>
+            <div class="triggered-alerts">
+                <h5>Triggered Alerts</h5>
+                <ul id="triggered-list">
+                    
+                </ul>
+            </div>
+        </div>
+
+        
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+

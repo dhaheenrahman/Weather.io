@@ -1,0 +1,271 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #90CAF9, #1E88E5);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    display: flex;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+    height: 90vh; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+.first-column {
+    flex: 0.5;
+    padding-right: 20px;
+    border-right: 2px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.controls {
+    margin-bottom: 20px; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.weather-display {
+    flex: 1; 
+    min-height: 200px;
+    background-color: #afd6ecab;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.weather-condition{
+    display: flex;
+    justify-content: left;
+
+}
+
+.weather-item {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    flex:0.5;
+}
+
+.weather-item span {
+    display: block;
+    font-size: 24px;
+    color: #333;
+    flex: 0.5
+}
+
+.weather-time-item {
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+}
+
+
+.second-column {
+    border-right: 2px solid #ddd;
+    flex: 1;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chart-container h3{
+    margin-bottom: 15px;
+}
+
+.chart-container{
+    border-radius: 10px;
+    display: flex;
+    flex-direction:column ;
+    justify-content: center;
+    flex: 0.7;
+}
+
+.alert-section {
+    justify-content: space-around;
+    display: flex;
+    flex: 0.3;
+    flex-direction: column;
+    margin-right: 20px;
+    padding: 15px; 
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    height: 100%; 
+}
+
+
+.third-column{
+    background-color: rgb(255, 255, 255);
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex:0.5;
+    gap: 15px;
+}
+
+.active-alerts{
+    border-radius: 15px;
+    flex: 1;
+    background-color:#ffcfcf6b;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.125) ;
+}
+
+.triggered-alerts{ 
+    border-radius: 15px;
+    flex: 1;
+    background-color: rgba(36, 27, 27, 0.07);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.125) ;
+}
+
+h5{
+    padding: 10px;
+    text-align: center;
+    color: tomato;
+}
+
+.triggered-alerts h5{
+    color: #17a7a5;
+}
+.active-alerts ul{
+    margin-left: 30px;
+
+}
+
+.triggered-alerts ul{
+    margin-left: 30px;
+}
+
+
+#city {
+    font-size: 36px;
+    font-weight: 600;
+    color: #2e86d4;
+}
+
+#temp {
+    font-size: 48px;
+    font-weight: 700;
+    color: #F57C00; 
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.303);
+    font-weight: bol;
+
+}
+
+#feelsLike, #status  {
+    font-size: 20px;
+    color: #473f3f5a;
+    font-weight: bolder;
+}
+
+#status{
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #17a7a5;
+    font-family: monospace;
+    font-weight: bolder;
+}
+
+#refreshtime, #updatetime{
+    color:rgb(86, 75, 75);
+    font-size: 12px;
+}
+
+h1, h3 {
+    text-align: center;
+    color: #333;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.alert-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-group label {
+    font-size: 14px; 
+    flex: 1;
+}
+
+.input-field, .dropdown {
+    flex: 2;
+    padding: 8px; 
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px; 
+    background-color: #fff;
+}
+
+.submit-btn {
+    padding: 8px 16px; 
+    max-width: 250px;
+    background-color: #E53935;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px; 
+}
+
+.submit{
+    text-align: center;
+}
+
+.submit-btn:hover {
+    background-color: #D32F2F;
+}
+
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .first-column, .second-column {
+        padding: 0;
+        border: none;
+    }
+
+    .second-column {
+        margin-top: 20px;
+    }
+}
