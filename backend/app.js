@@ -10,6 +10,8 @@ app.use(cors());
 app.use(express.json())
 const metros=["Bengaluru","Chennai","Mumbai","Kolkata","Delhi","Hyderabad"]
 
+metros.forEach((metro)=>fetchWeather(metro))
+
 //  endpoint to display server greeting
 app.get('/',(req,res)=>{
     res.send("Welcome to the server!")
