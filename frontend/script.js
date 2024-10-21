@@ -138,7 +138,10 @@ function fetchDailySummary(city) {
                                     const label = tooltipItem.dataset.label || '';
                                     const value = tooltipItem.formattedValue;
                                     const weatherCondition = weatherConditions[tooltipItem.dataIndex];
-                                    return `${label}: ${value}\nWeather: ${weatherCondition}`;
+                                    return [
+                                        `${label}: ${value}`, 
+                                        `Dominant Weather: ${weatherCondition}`
+                                    ];
                                 }
                             }
                         }
