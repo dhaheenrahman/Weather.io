@@ -138,7 +138,7 @@ The 10 mins interval is chosen because the data fetched from api is refreshing o
 4. Visualize weather trends over the past 10 days using the chart.
 ## Appendix:
 ### Dummy data insertion query to visualize daily_summary chart:
-	INSERT INTO weather_data (id, city, date, average_temperature, max_temperature, min_temperature, dominant_weather_condition) 
+	INSERT INTO daily_weather_summary (id, city, date, average_temperature, max_temperature, min_temperature, dominant_weather_condition) 
 	VALUES
 	(1, 'Bengaluru', '2024-10-10', 295.5, 300, 290, 'Clear'),
 	(2, 'Chennai', '2024-10-10', 300.5, 305, 295, 'Clear'),
