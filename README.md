@@ -99,7 +99,45 @@ Now the server will be running on:- <br>
 Your weather app is now ready to use. <br>
 Note:- The daily summary won't be visible since the daily_weather_summary table is      empty initially. You can insert some dummy data for visualization purpose in the        inital case or wait for days to pass. Insertion query for some dummy data is            attached at then end of this readme. You can use it for testing purpose.
 
+## Working
+#### Weather Dashboard
+![weather_dashboard_snapshot](https://github.com/user-attachments/assets/4607e29e-0d86-465a-bec1-b706b2dde88d)
+- User can choose any city among the metro cities in Inda. 
+- User can toggle between temperature display unit.
+- User can configure weather refreshing interval. The default value will be 10 mins.
+- User can view the current weather information which is updated on a defined interval. The informations include:
+1. Weather condition
+2. Temperature
+3. Feels Like temperature
+4. Low and High of the current day
+5. Humidity Percentage
+6. Wind speed in Kmph
+7. Last refresh time
+8. Last weather updation time.
+#### Daily Summary Chart
+![dailySummary_snapshot](https://github.com/user-attachments/assets/4585ea5e-aa28-4601-bf76-c85f2b87f8ee)
+- The summary of daily weather data for the last 10 days.
+- The summary can be visualized in a chart where y-axis shows temperature and x-axis represents date.
+- The informations included in the map:
+##### 1. Daily average temperature
+Calculated from the temperature recorded throughout the day from the database 
+##### 2. Daily minimum temperature
+Calculated from the temperature recorded throughout the day from the database 
+##### 3. Daily maximum temperature
+Calculated from the temperature recorded throughout the day from the database 
+##### 4. Dominant weather condition of the day(Visible when hovered over the points in the chart):<br>
+Determined by choosing the most recorded weather condition of the day from the database.
 
+#### Weather Alerts
+User can create custom weather alerts for each cities. The alerts created are applicable only for the currently selected city.
+- ##### Temperature alert:
+  This type of alerts are triggered when the temperature reaches or goes above the temperature threshold set by the user.
+- ##### Weather condition alert:
+  This one gets triggered when the weather condition becomes certain conditions set by the user.
+- ##### Consecutive checks:
+  User can also set the number of consecutive checks to be considered for triggering the alarm.
+- ##### View active and triggered alerts
+  User can view the active and triggered alerts set by them on seperate tabs. 
 ## Major Areas:
 ### OpenWeatherMap API call: <br>
 &nbsp;&nbsp; The free weather api service given by OpenWeatherMap is the backbone of this application since it is the only data source of this project. All the data are formed out of this data. The API call url: <br><br>
