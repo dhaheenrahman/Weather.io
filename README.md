@@ -1,107 +1,104 @@
-<!-- dependencies installed :-
-npm install express
-npm install dotenv
-npm install mysql2
-npm install node-fetch
-npm install node-cron
-npm install node-schedule
-npm install cors
-
-
-notes
-
-crons,utc to ist, fetching latest row , DOMINANT,  -->
-
 # Weather.io
 
 A weather monitoring application that fetches real-times weather updates of metro cities from OpenWeatherMap API and provides daily weather summary and user configured weather alerts. The Front end is developed using HTML,CSS and JavaScript and the backend is handled by Node.js with MySQL as Database.
 
 ## Features
-- Real-time Weather Data :
+- **Real-time Weather Data :**
     Fetches weather data for metro cities in India.
     
-- User-configurable controls:
+- **User-configurable controls:**
     User can configure the temperature unit(°C default) and                                 refresh intervals.
     
-- Visualization of Daily Summary:
+- **Visualization of Daily Summary:**
     User can visualize the summary with the help of a chart which show Daily                Avg,Min,Max Temperature and Dominant Weather Condition of the last 10 days.
 
-- User-configurable Alerts:
+- **User-configurable Alerts:**
     User can set Weather alerts by setting Temperature threshold value and Specific         weather condition. Also configure how many consecutive updates should be               considered to trigger the alert.
 
-- Active and Triggered Alerts:
+- **Active and Triggered Alerts:**
     Display the active and triggered alerts in the console for the recent 5 alerts.
+
+## Project Structure
+	Weather.io/
+	│
+	├── backend/
+	│   ├── app.js
+	│   ├── db.js
+	│   ├── .env
+	│
+	├── frontend/
+	│   ├── index.html
+	│   ├── styles.css
+	│   ├── script.js
+	│
+	├── node_modules/
+	├── package.json 
+	├── package-lock.json
+	├── README.md
 
 ## Installation and Setup
 Follow these steps to set up and run the project locally.
 ### Prerequisites
-- Node.js
-- MySQL
+- Node.js (v16 or higher)
+- MySQL (v5.7 or higher)
+- Git
 - OpenWeatherMap API key
 
 ### Steps:
-1. Clone the github repository: Open Terminal and run:- <br>
-    `git clone https://github.com/dhaheenrahman/weather.io.git`
-2. Navigate to the Root Directory <br>
-    `cd Weather.io`
-3. Install the dependencies required using following command:- <br>
-    `npm install express mysql2 dotenv node-fetch node-cron cors`
-4. Configure your MySQL Credentials and OpenWeatherMap API key in 'backend/.env'
-5. Create MySQL Database named 'weatherapp' and following tables <br>
-    `CREATE DATABASE weatherapp;`<br>
-    `USE weatherapp;` <br><br>
-    `CREATE TABLE weather_data (
+##### 1. Clone the github repository to your preferred directory. Open Terminal and run:-
+    git clone https://github.com/dhaheenrahman/weather.io.git
+    cd Weather.io
+##### 2. Install the dependencies using following command:-
+    npm install
+##### 3. Create MySQL Database named 'weatherapp' and following tables(Better use a new terminal for mysql commands):
+    CREATE DATABASE weatherapp;
+    USE weatherapp;
+	
+    CREATE TABLE weather_data (
     id INT AUTO_INCREMENT PRIMARY KEY,
     city VARCHAR(255),
     temperature FLOAT,
     feels_like FLOAT,
+	low FLOAT,
+	high FLOAT,
     weather_condition VARCHAR(255),
+	humidity INT,
+	wind_speed FLOAT,
     recorded_at DATETIME,
-    icon VARCHAR(10)
-);` <br><br>
-    `CREATE TABLE daily_weather_summary (
+    icon VARCHAR(10));
+	
+    CREATE TABLE daily_weather_summary (
     id INT AUTO_INCREMENT PRIMARY KEY,
     city VARCHAR(255),
     date DATE,
     average_temperature FLOAT,
     max_temperature FLOAT,
     min_temperature FLOAT,
-    dominant_weather_condition VARCHAR(255)
-);` <br><br>
-    `CREATE TABLE weather_alerts (
+    dominant_weather_condition VARCHAR(255));
+	
+    CREATE TABLE weather_alerts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     city VARCHAR(255),
     temperature_threshold FLOAT,
     condition_threshold VARCHAR(255),
     consecutive_checks INT,
     alert_type VARCHAR(255),
-    is_active BOOLEAN DEFAULT TRUE
-);`<br>
-6. Navigate to backend directory and run 'app.js':- <br>
-    `cd backend` <br>
-    `node app.js` <br>
+    is_active BOOLEAN DEFAULT TRUE );
+##### 4. Navigate to 'backend' directory: `cd backend`<br> Create file '.env' and paste the below text in this file and configure your MySQL Credentials and OpenWeatherMap API key here
+	DB_USER=your_user (Eg: root)
+	DB_HOST=your_host (Eg: localhost)
+	DB_NAME=your_db_name (Eg: weatherapp)
+	DB_PASS=your_password
+	DB_PORT=your_port (Eg:3306)
+	WEATHER_API_KEY=your_api_key
+##### 5. Run the file 'app.js':-
+    node app.js
 Now the server will be running on:- <br>
     `http://localhost:3000`
-7. Navigate to the 'frontend' folder and open 'index.html' in a browser. <br>
-    Your weather app is now ready to use. <br>
-    Note:- The daily summary won't be visible since the daily_weather_summary table is      empty initially. You can insert some dummy data for visualization purpose in the        inital case or wait for days to pass. Insertion query for some dummy data is            attached at then end of this readme. You can use it for testing purpose.
-## Project Structure
-`Weather.io/` <br>
-`│` <br>
-`├── backend/`<br>
-`│   ├── app.js`<br>
-`│   ├── db.js`<br>
-`│   ├── .env`<br>
-`│`<br>
-`├── frontend/`<br>
-`│   ├── index.html`<br>
-`│   ├── styles.css`<br>
-`│   ├── script.js`<br>
-`│`<br>
-`├── node_modules/`<br>
-`├── package.json`<br> 
-`├── package-lock.json`<br>
-`├── README.md`<br> 
+##### 6. Navigate to the 'frontend' folder and open 'index.html' in a browser. <br>
+Your weather app is now ready to use. <br>
+Note:- The daily summary won't be visible since the daily_weather_summary table is      empty initially. You can insert some dummy data for visualization purpose in the        inital case or wait for days to pass. Insertion query for some dummy data is            attached at then end of this readme. You can use it for testing purpose.
+
 
 ## Major Areas:
 ### OpenWeatherMap API call: <br>
@@ -109,7 +106,7 @@ Now the server will be running on:- <br>
     `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}`<br><br>
 &nbsp;&nbsp;Since this call needs 'lat' and 'long' of each location, they are also providing another geocoding api to fetch 'lat' and 'long' from location inputs. But when i have gone through their documentation deeply, they are also providing a Built-in geocoding integrated weather API call. The url is as follows:- <br><br>
 `https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}`<br>
-&nbsp;&nbsp;So I decided to use this API call for weather data fetching since there is no need to find latitude and longitude seperately using geocoding API.<br><br>
+&nbsp;&nbsp;So I decided to use this API call for fetching weather data  since there is no need to find latitude and longitude seperately using geocoding API.<br><br>
 The values of following keys are used for this application: `temp` `feels_like` `main` `icon` `dt`
 ### Temperature Conversion Formulas used:-<br>
 &nbsp;&nbsp;Since the 'temp' value fetched from weather api is in Kelvin, we have to convert it to Celsius or Fahrenheit as per user preference. The conversion formulas used are:<br><br>
@@ -119,7 +116,7 @@ Kelvin to Fahrenheit: `(T(K) - 273)*9/5 + 32`<br><br>
 
 ### Cron Jobs using node-cron:
 &nbsp; &nbsp;- The node-cron helps to schedule tasks. This is used for scheduling two tasks in the backend.- First one is scheduled at 10 minutes interval for fetching weather data from api inorder keep the database updated with latest data every 10 mins.
-The 10 mins interval is chosen because the data fetched from api is refreshing only once in every 10 minutes. So an api call with interval of less than 10 mins is of no use.<br>Cron expression of this task: `59 23 * * *` &nbsp;<br> <br>- The second cron task scheduled is to calculate and push the summary of the day to daily_weather_summary table at the end of the day(11:59 pm). It is calculated from all the records in weather_data table fetched at every 10 mins. The weather_data is also truncated after this task for capturing next day's data so as to prevent database flooding with all previous data. <br> Cron expression of this task: `*/10 * * * *`<br><br>
+The 10 mins interval is chosen because the weather data in the api is refreshing only once in every 10 minutes. So an api call with interval of less than 10 mins is of no use.<br>Cron expression of this task: `*/10 * * * *` &nbsp;<br> <br>- The second cron task scheduled is to calculate and push the summary of the day to daily_weather_summary table at the end of the day(11:59 pm). It is calculated from all the records in weather_data table fetched at every 10 mins. The weather_data is also truncated after this task for capturing next day's data so as to prevent database flooding with all previous data. <br> Cron expression of this task: `59 23 * * *` <br><br>
 ## Technology Stack
 ### Backend
 
@@ -132,7 +129,7 @@ The 10 mins interval is chosen because the data fetched from api is refreshing o
 - JavaScript
 
 ## Usage
-1. Launch the server and access the frontend at `http://localhost:3000`.
+1. Launch the server and access the frontend in `index.html`. 
 2. Monitor the weather data in real-time.
 3. Set custom weather alerts based on temperature and conditions.
 4. Visualize weather trends over the past 10 days using the chart.

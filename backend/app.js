@@ -28,13 +28,17 @@ async function fetchWeather(city){
         const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.WEATHER_API_KEY}`);
         const data = await apiCall.json();
 
-        const icon = data.weather[0].icon
+        const icon = data.weather[0].icon;
         const temp = Number(data.main.temp.toFixed(1));
         const feelsLike = Number(data.main.feels_like.toFixed(1));
+        const low = Number(data.main.temp_min.toFixed(1))
+        const high = Number(data.main.temp_max.toFixed(1))
         const condition = data.weather[0].main;
+        const humidity = Number(data.main.humidity)
+        const windSpeed = Number((data.wind.speed*3.6).toFixed(1))
     
-        const query = "INSERT INTO weather_data (City, Temperature,feels_like, weather_condition, recorded_at,icon) VALUES (?,?, ?, ?, CURRENT_TIMESTAMP,?)";
-        connection.query(query, [city, temp,feelsLike, condition,icon], (err, result) => {
+        const query = "INSERT INTO weather_data (City, Temperature,feels_like, low, high, weather_condition, humidity, wind_speed, recorded_at,icon) VALUES (?,?,?,?,?,?,?,?, CURRENT_TIMESTAMP,?)";
+        connection.query(query, [city, temp,feelsLike, low, high, condition,humidity,windSpeed,icon], (err, result) => {
             if (err) {
                 console.log(`Weather data for ${city} insertion failed!`, err);
             } else {

@@ -4,6 +4,10 @@ const weatherIcon = document.getElementById("weatherIcon")
 const temp = document.getElementById("temp");
 const feelsLike = document.getElementById("feelsLike");
 const condition = document.getElementById("status");
+const low = document.getElementById("low");
+const high = document.getElementById("high");
+const humidity = document.getElementById("humidity");
+const windSpeed = document.getElementById("windSpeed");
 const refreshTime = document.getElementById("refreshtime")
 const updateTime = document.getElementById("updatetime")
 const tempUnit = document.getElementById("unit");
@@ -49,19 +53,27 @@ function setDisplay(dataObj) {
     weatherIcon.src=`http://openweathermap.org/img/w/${dataObj.icon}.png`
     city.textContent = dataObj.city;
     condition.textContent = dataObj.weather_condition;
+    humidity.textContent = `Humidity: ${dataObj.humidity}%`;
+    windSpeed.textContent = `Wind: ${dataObj.wind_speed} Km/hr`;
     refreshTime.textContent = ` Last refreshed at: ${new Date().toLocaleTimeString()}`
     updateTime.textContent = `Last updated at: ${new Date(dataObj.recorded_at).toLocaleTimeString()}`
 
     let tempKelvin = dataObj.temperature;
     feelsLikeKelvin = dataObj.feels_like;
+    let lowKelvin = dataObj.low;
+    let highKelvin = dataObj.high
 
     FahrenheitFlag = tempUnit.value === "f" ? true : false;
     if (FahrenheitFlag) {
         temp.textContent = `${((tempKelvin - 273) * 9/5 + 32).toFixed(1)}°F`;
         feelsLike.textContent = `Feels like ${((feelsLikeKelvin - 273) * 9/5 + 32).toFixed(1)}°F`;
+        low.textContent = `L: ${((lowKelvin - 273) * 9/5 + 32).toFixed(1)}°F`;
+        high.textContent = `H: ${((highKelvin - 273) * 9/5 + 32).toFixed(1)}°F`;
     } else {
         temp.textContent = `${(tempKelvin - 273).toFixed(1)}°C`;
         feelsLike.textContent = `Feels like ${(feelsLikeKelvin - 273).toFixed(1)}°C`;
+        low.textContent = `L: ${(lowKelvin - 273).toFixed(1)}°C`;
+        high.textContent = `H: ${(highKelvin - 273).toFixed(1)}°C`;
     }
 }
 

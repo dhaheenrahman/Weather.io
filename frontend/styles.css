@@ -36,10 +36,11 @@ body {
 }
 
 .controls {
-    margin-bottom: 20px; 
+    margin-bottom: 15px; 
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 10px;
+    /* flex: 0.3; */
 }
 
 .weather-display {
@@ -76,6 +77,23 @@ body {
     font-size: 24px;
     color: #333;
     flex: 0.5
+}
+
+.minmax{
+    display: flex;
+    padding: 0px;
+}
+
+.humidityNwindBox{
+    padding: 15px;
+    background-color: #337fab;
+    font-family: monospace;
+    font-weight: bold;
+    color:rgba(255, 255, 255, 0.834);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
 .weather-time-item {
@@ -177,10 +195,13 @@ h5{
 
 }
 
-#feelsLike, #status  {
+#feelsLike, #status,#low,#high  {
     font-size: 20px;
     color: #473f3f5a;
     font-weight: bolder;
+}
+#low,#high{
+    font-size: 15px;
 }
 
 #status{
@@ -194,8 +215,15 @@ h5{
 }
 
 #refreshtime, #updatetime{
-    color:rgb(86, 75, 75);
+    color:rgba(86, 75, 75, 0.47);
     font-size: 12px;
+    font-weight: 600;
+}
+
+.controls select{
+    background-color:#337fab;
+    color: white;
+    font-weight: bold;
 }
 
 h1, h3 {

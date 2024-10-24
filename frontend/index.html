@@ -12,7 +12,7 @@
         <div class="first-column">
             <h1>Weather Dashboard</h1>
             <div class="controls">
-                <label for="cityChoice">City:</label>
+                <!-- <label for="cityChoice">City:</label> -->
                 <select id="cityChoice" class="dropdown">
                     <option value="Bengaluru">Bengaluru</option>
                     <option value="Chennai">Chennai</option>
@@ -22,14 +22,15 @@
                     <option value="Delhi">Delhi</option>
                 </select>
 
-                <label for="unit">Unit:</label>
+                <!-- <label for="unit">Unit:</label> -->
                 <select id="unit" class="dropdown">
                     <option value="c">°C</option>
                     <option value="f">°F</option>
                 </select>
 
-                <label for="refreshInterval">Refresh Interval:</label>
+                <!-- <label for="refreshInterval">Refresh Interval:</label> -->
                 <select id="refreshInterval" class="dropdown">
+                    <option value="600000">Refresh Interval</option>
                     <option value="600000">10 mins</option>
                     <option value="1800000">30 mins</option>
                     <option value="3600000">1 hour</option>
@@ -45,6 +46,16 @@
                     <span id="city"></span>
                     <span id="temp"></span>
                     <span id="feelsLike"></span>
+                    <div class="minmax">
+                        <span id="low"></span>
+                        <span id="high"></span>
+                    </div>
+                    
+
+                </div>
+                <div class="humidityNwindBox">
+                    <span id="humidity"></span>
+                    <span id="windSpeed"></span>
                 </div>
                 <div class="weather-time-item">
                     <span id="refreshtime"></span>
