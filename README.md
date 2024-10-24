@@ -90,7 +90,7 @@ Follow these steps to set up and run the project locally.
 	DB_NAME=your_db_name (Eg: weatherapp)
 	DB_PASS=your_password
 	DB_PORT=your_port (Eg:3306)
-	WEATHER_API_KEY=your_api_key
+	WEATHER_API_KEY=6b10299808819fb268ae7c99f03ddade
 ##### 5. Run the file 'app.js':-
     node app.js
 Now the server will be running on:- <br>
